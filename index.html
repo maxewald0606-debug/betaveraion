@@ -1437,6 +1437,66 @@ a { color: inherit; }
 .hm-reg { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 11px 12px; background: linear-gradient(90deg, var(--a3), #ff8a3d); color: #fff; font-weight: 800; font-size: 14px; text-decoration: none; border-top: 1px solid rgba(255,255,255,.18); }
 .hm-reg svg { width: 14px; height: 14px; }
 @media (prefers-reduced-motion: reduce) { .hm-sign { animation: none; } }
+   /* ===== Tresen-Ansicht ===== */
+#tresen{--pink:#ff2e88;position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;gap:1.8vh;
+  height:100dvh;padding:calc(2vh + env(safe-area-inset-top,0px)) 4vw calc(2vh + env(safe-area-inset-bottom,0px));
+  overflow:hidden;background:#07060f;color:#fff;font-family:var(--f-body);
+  user-select:none;-webkit-user-select:none;touch-action:none;-webkit-touch-callout:none}
+#tresen[hidden]{display:none}
+#tresen *{pointer-events:none}
+#tresen #trOut,#tresen .tr-modal,#tresen .tr-modal *{pointer-events:auto}
+
+.tr-special{flex:0 0 30%;display:flex;flex-direction:column;justify-content:center;padding:1.5vh 5vw;
+  border-radius:24px;border:2px solid #ffd54a;background:linear-gradient(135deg,#2a0f3d,#13131f);box-shadow:0 0 30px #ffd54a44}
+.tr-special h2{margin:0 0 1.2vh;font-family:var(--f-display);font-weight:400;font-size:clamp(16px,2.8vh,34px);
+  letter-spacing:.1em;text-transform:uppercase;color:#ffd54a}
+.tr-sp{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:.5vh 0;
+  font-weight:800;font-size:clamp(20px,3.6vh,46px);line-height:1.1}
+.tr-sp small{display:block;font-size:.45em;font-weight:600;opacity:.7}
+.tr-sp b{color:#ffd54a;font-family:var(--f-display);font-weight:400;white-space:nowrap}
+
+.tr-banner{flex:0 0 32%;position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border:4px solid var(--pink);border-radius:28px;
+  box-shadow:0 0 30px var(--pink),inset 0 0 30px color-mix(in srgb,var(--pink) 25%,transparent)}
+.tr-time{text-align:center;font-family:var(--f-display);color:var(--pink);font-variant-numeric:tabular-nums;
+  text-shadow:0 0 18px var(--pink);padding:1vh 0;flex:1;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(56px,16vh,170px);line-height:1}
+.tr-sub{text-align:center;font-weight:800;font-size:clamp(12px,1.9vh,22px);color:#ffd0e4;padding-bottom:1.2vh}
+.tr-sub:empty{display:none}
+.tr-hh{display:none;flex:1;flex-direction:column;justify-content:center;align-items:center;gap:1.4vh;padding:0 5vw 1.5vh;position:relative}
+.tr-banner.hh .tr-time{flex:0 0 auto;font-size:clamp(34px,8vh,96px)}
+.tr-banner.hh .tr-sub{display:none}
+.tr-banner.hh .tr-hh{display:flex}
+.tr-bar{width:100%;height:2.2vh;border-radius:99px;background:#ffffff1a;overflow:hidden;z-index:1}
+.tr-bar i{display:block;height:100%;width:100%;background:var(--pink);box-shadow:0 0 14px var(--pink);transition:width 1s linear}
+.tr-offer{z-index:1;text-align:center;font-weight:800;font-size:clamp(20px,3.8vh,50px);line-height:1.1}
+.tr-offer small{display:block;margin-top:.4vh;font-size:.55em;color:var(--pink)}
+.tr-bub{position:absolute;bottom:-20px;border-radius:50%;background:color-mix(in srgb,var(--pink) 30%,transparent);animation:trBub linear infinite}
+@keyframes trBub{to{transform:translateY(-34vh);opacity:0}}
+
+.tr-bottom{flex:1;display:flex;gap:3vw;min-height:0}
+.tr-menu{flex:1;display:flex;flex-direction:column;gap:.8vh;min-width:0}
+.tr-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1vh 3vw;min-height:0;
+  padding:1.2vh 3vw;border-radius:18px;background:#161622}
+.tr-grp h3{margin:0 0 .3vh;font-family:var(--f-display);font-weight:400;font-size:clamp(11px,1.6vh,20px);
+  text-transform:uppercase;letter-spacing:.06em;color:var(--pink)}
+.tr-row{display:flex;justify-content:space-between;gap:8px;font-size:clamp(10px,1.55vh,19px);line-height:1.3}
+.tr-row small{opacity:.6}
+.tr-row b{font-weight:800;white-space:nowrap}
+.tr-pfand{text-align:center;opacity:.65;font-size:clamp(9px,1.2vh,14px);line-height:1.3}
+.tr-qr{flex:0 0 28%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8vh;
+  font-size:clamp(10px,1.4vh,16px);font-weight:700;text-align:center}
+.tr-qr img{width:100%;max-height:80%;object-fit:contain;background:#fff;padding:6px;border-radius:12px}
+
+#trOut{position:absolute;right:3vw;bottom:calc(.4vh + env(safe-area-inset-bottom,0px));font-size:11px;color:#fff;opacity:.22;text-decoration:none;padding:6px}
+.tr-modal{position:absolute;inset:0;background:#000d;display:none;align-items:center;justify-content:center;touch-action:auto}
+.tr-modal.on{display:flex}
+.tr-modal form{display:flex;flex-direction:column;gap:12px;width:min(80vw,320px);padding:24px;border-radius:16px;background:#1b1b2a}
+.tr-modal input,.tr-modal button{font:inherit;font-size:18px;padding:12px;border-radius:12px;border:0}
+.tr-modal input{text-align:center;letter-spacing:.4em;user-select:text;-webkit-user-select:text}
+.tr-modal .go{background:var(--pink);color:#fff;font-weight:800}
+.tr-modal .no{background:#333;color:#fff}
+.tr-err{min-height:1.2em;color:#ff9a9a;font-size:14px;text-align:center}
 
 </style>
 </head>
@@ -1560,6 +1620,34 @@ a { color: inherit; }
     <nav class="swipe-hint" id="swipeHint" aria-label="Zwischen den Seiten wechseln"><button type="button" id="swPrev" aria-label="Vorherige Seite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><span class="dots" id="swDots"></span><button type="button" id="swNext" class="nudge" aria-label="Nächste Seite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></nav>
 
   </main>
+   <div id="tresen" hidden>
+  <section class="tr-special"><h2>★ Specials des Abends</h2><div id="trSpecials"></div></section>
+
+  <section class="tr-banner" id="trBanner">
+    <div class="tr-time" id="trTime">--:--</div>
+    <div class="tr-sub" id="trSub"></div>
+    <div class="tr-hh"><div class="tr-bar"><i id="trBar"></i></div><div class="tr-offer" id="trOffer"></div></div>
+  </section>
+
+  <section class="tr-bottom">
+    <div class="tr-menu">
+      <div class="tr-grid" id="trMenu"></div>
+      <div class="tr-pfand" id="trPfand"></div>
+    </div>
+    <div class="tr-qr"><img src="paypal-qr.png" alt="PayPal-QR-Code"><span>Bargeldlos per PayPal</span></div>
+  </section>
+
+  <a href="#" id="trOut">abmelden</a>
+
+  <div class="tr-modal" id="trModal">
+    <form id="trForm" autocomplete="off">
+      <input type="password" id="trPin" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="PIN">
+      <div class="tr-err" id="trErr"></div>
+      <button class="go" type="submit">Beenden</button>
+      <button class="no" type="button" id="trCancel">Abbrechen</button>
+    </form>
+  </div>
+</div>
 </div>
 
 <script>
@@ -3109,8 +3197,14 @@ function renderTeam() {
       <h3>Wünsche</h3>
       <div id="wishList" class="wish-list"><p class="prost-small">${Live.remote ? "Lädt …" : "Wünsche sind erst mit Datenbank-Verbindung sichtbar."}</p></div>
     </section>
+        <section class="cbox team" aria-label="Tresen-Ansicht">
+      <h3>Tresen-Ansicht</h3>
+      <p class="prost-small">Zeigt Specials, Uhrzeit, Happy Hour, Karte und PayPal-QR im Vollbild. Beenden geht nur mit PIN.</p>
+      <div class="team-row"><button type="button" class="wide" id="tTresen">Tresen-Ansicht starten</button></div>
+    </section>
     <button type="button" class="team-logout" id="tLogout">Abmelden</button>`;
   loadWishList();
+     $("tTresen").addEventListener("click", openTresen);
   loadTeamList();
   if (teamSub) teamSub();
   teamSub = Live.subscribe((st) => {
@@ -5123,7 +5217,113 @@ function refreshLive() {
   }
 }
 
-/* Start */
+/* ================= Tresen-Ansicht (Hochkant-Anzeige ohne Bedienung) ================= */
+const TR = { timer: 0, wake: null, evId: undefined };
+const trPick = () => { const b = barState(); return b.open ? b.ev : (b.next || null); };
+
+function trHH(ev) {
+  if (!ev || !ev.happyHour) return null;
+  const day = isoDay(ev.startDate), off = ev.start.slice(-6);
+  const from = new Date(`${day}T${ev.happyHour.von}:00${off}`);
+  let to = new Date(`${day}T${ev.happyHour.bis}:00${off}`);
+  if (to <= from) to = new Date(to.getTime() + 864e5);
+  return { from, to };
+}
+
+function trMenuHTML() {
+  return KARTE.gruppen.map((g) => {
+    const a = g.artikel, same = a.length > 3 && a.every((x) => x.preis === a[0].preis);
+    let rows;
+    if (same) {
+      const names = a.map((x) => x.name).filter((n) => !/^alle /i.test(n)).join(" · ");
+      const m = a.every((x) => x.menge === a[0].menge) && a[0].menge ? " · " + a[0].menge : "";
+      rows = `<div class="tr-row"><span>${esc(names + m)}</span><b>${euro(a[0].preis)}</b></div>`;
+    } else {
+      rows = a.map((x) => `<div class="tr-row"><span>${esc(x.name)}${x.menge ? ` <small>${esc(x.menge)}</small>` : ""}</span><b>${euro(x.preis)}</b></div>`).join("");
+    }
+    return `<div class="tr-grp"><h3>${esc(g.gruppe)}</h3>${rows}</div>`;
+  }).join("");
+}
+
+function trRender(ev) {
+  $("tresen").style.setProperty("--pink", (ev && ev.th && ev.th.a3) || "#ff2e88");
+  $("trSpecials").innerHTML = ev && ev.specials && ev.specials.length
+    ? ev.specials.map((s) => `<div class="tr-sp"><span>${esc(s.name)}${s.info ? `<small>${esc(s.info)}</small>` : ""}</span><b>${euro(s.preis)}</b></div>`).join("")
+    : `<div class="tr-sp"><span>Heute keine Specials</span></div>`;
+  const o = ev && ev.happyHour && ev.happyHour.angebote[0];
+  $("trOffer").innerHTML = o ? `${esc(o.name)}<small>${o.preis != null ? euro(o.preis) : ""}${o.zusatz ? " " + esc(o.zusatz) : ""}</small>` : "";
+  $("trMenu").innerHTML = trMenuHTML();
+  $("trPfand").innerHTML = esc(KARTE.fussnote || "") + (KARTE.jugendschutz ? `<br>${esc(KARTE.jugendschutz)}` : "");
+}
+
+function trTick() {
+  const now = new Date(), ev = trPick(), id = ev ? ev.id : null;
+  if (id !== TR.evId) { TR.evId = id; trRender(ev); }
+  $("trTime").textContent = berlin({ hour: "2-digit", minute: "2-digit" }).format(now);
+  const hh = trHH(ev), on = !!hh && now >= hh.from && now < hh.to;
+  $("trBanner").classList.toggle("hh", on);
+  if (on) $("trBar").style.width = (100 * (hh.to - now) / (hh.to - hh.from)).toFixed(2) + "%";
+  $("trSub").textContent = hh && now < hh.from ? `Happy Hour ab ${ev.happyHour.von} Uhr` : "";
+}
+
+async function trWake() {
+  try { if (navigator.wakeLock && !$("tresen").hidden) TR.wake = await navigator.wakeLock.request("screen"); } catch {}
+}
+
+function openTresen() {
+  const hh = document.querySelector(".tr-hh");
+  if (!hh.querySelector(".tr-bub")) {
+    for (let i = 0; i < 14; i++) {
+      const b = document.createElement("span"), s = 8 + Math.random() * 22;
+      b.className = "tr-bub";
+      b.style.cssText = `width:${s}px;height:${s}px;left:${Math.random() * 100}%;animation-duration:${4 + Math.random() * 5}s;animation-delay:${-Math.random() * 6}s`;
+      hh.appendChild(b);
+    }
+  }
+  TR.evId = undefined;
+  $("tresen").hidden = false;
+  try { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(() => {}); } catch {}
+  trWake();
+  trTick();
+  clearInterval(TR.timer);
+  TR.timer = setInterval(trTick, 1000);
+}
+
+function closeTresen() {
+  clearInterval(TR.timer);
+  try { TR.wake && TR.wake.release(); } catch {}
+  TR.wake = null;
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  $("tresen").hidden = true;
+}
+
+/* PIN prüfen: gegen Firebase (ohne die App an- oder abzumelden). Ohne Netz gilt der lokale Prüfwert. */
+async function trCheckPin(pin) {
+  try {
+    const r = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + FIREBASE_CONFIG.apiKey, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: TEAM_EMAIL, password: TEAM_PW(pin), returnSecureToken: false })
+    });
+    return r.ok;
+  } catch { return checkPin(pin); }
+}
+
+function trModal(open) {
+  $("trModal").classList.toggle("on", open);
+  $("trPin").value = ""; $("trErr").textContent = "";
+  if (open) setTimeout(() => $("trPin").focus(), 50);
+}
+$("trOut").addEventListener("click", (e) => { e.preventDefault(); trModal(true); });
+$("trCancel").addEventListener("click", () => trModal(false));
+$("trForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const pin = $("trPin").value.trim(); if (!pin) return;
+  if (await trCheckPin(pin)) { trModal(false); closeTresen(); }
+  else { $("trErr").textContent = "Falscher PIN"; $("trPin").value = ""; }
+});
+document.addEventListener("visibilitychange", () => { if (!document.hidden && !$("tresen").hidden) trWake(); });
+document.addEventListener("contextmenu", (e) => { if (!$("tresen").hidden) e.preventDefault(); });
+   /* Start */
 $("clubName").textContent = CLUB.name;
 $("clubSub").textContent = CLUB.sub;
 $("igTop").href = CLUB.instagram;
