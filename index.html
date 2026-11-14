@@ -1452,36 +1452,37 @@ a { color: inherit; }
 .tr-scene::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(5,8,22,.55) 0%,rgba(5,8,22,.25) 35%,rgba(5,8,22,.55) 70%,rgba(5,8,22,.9) 100%)}
 
-/* Kopf */
-.tr-head{flex:0 0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:3vw}
-.tr-ttl{flex:1;min-width:0}
-.tr-ttl .title{margin:0}
-.tr-ttl .script{margin:.6vh 0 0 4px;font-size:clamp(22px,4.4vh,48px)}
-.tr-side{display:flex;flex-direction:column;align-items:flex-end;gap:1.2vh}
-.tr-side img{width:6.5vh;height:6.5vh;border-radius:50%;box-shadow:0 0 0 1.5px rgba(255,255,255,.5),0 0 18px color-mix(in srgb,var(--a1) 45%,transparent)}
+/* Oberer Bereich: links Logo, Datum und Motto, rechts die Specials */
+.tr-top{flex:0 0 46vh;display:flex;gap:3vw;min-height:0}
+.tr-left{flex:0 0 46%;min-width:0;display:flex;flex-direction:column;gap:1.4vh}
+.tr-id{display:flex;align-items:center;gap:2.5vw}
+.tr-id img{flex:none;width:7vh;height:7vh;border-radius:50%;box-shadow:0 0 0 1.5px rgba(255,255,255,.5),0 0 18px color-mix(in srgb,var(--a1) 45%,transparent)}
 .tr-date{display:grid;gap:2px;padding:.9vh 2.6vw;border-radius:18px;border:2px solid var(--a3);background:rgba(5,8,22,.62);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);text-align:center;
   box-shadow:0 0 22px color-mix(in srgb,var(--a3) 55%,transparent),inset 0 0 18px color-mix(in srgb,var(--a3) 25%,transparent)}
-.tr-date b{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,3.8vh,44px);line-height:1;color:#fff;text-shadow:0 0 3px #fff,0 0 16px var(--a3)}
-.tr-date span{font-weight:800;font-size:clamp(11px,1.7vh,20px);color:var(--a1)}
+.tr-date b{font-family:var(--f-display);font-weight:400;font-size:clamp(18px,3.4vh,40px);line-height:1;color:#fff;text-shadow:0 0 3px #fff,0 0 16px var(--a3)}
+.tr-date span{font-weight:800;font-size:clamp(10px,1.5vh,18px);color:var(--a1);white-space:nowrap}
 .tr-date:empty{display:none}
+.tr-left .title{margin:0}
+.tr-left .script{margin:.4vh 0 0 4px;font-size:clamp(22px,4.4vh,48px)}
 
-/* Specials */
-.tr-specials{flex:0 0 21vh;display:flex;flex-direction:column;gap:.9vh;min-height:0}
+/* Specials: große Kacheln von oben bis zum Timer */
+.tr-specials{flex:1;min-width:0;display:flex;flex-direction:column;gap:.9vh;min-height:0}
 .tr-lab{align-self:flex-start;padding:.6vh 2.4vw;border-radius:999px;border:1px solid color-mix(in srgb,var(--a1) 55%,transparent);
-  background:rgba(5,8,22,.6);font-weight:800;font-size:clamp(10px,1.6vh,18px);letter-spacing:.1em;text-transform:uppercase;color:var(--a1)}
-.tr-cards{flex:1;display:flex;gap:3vw;min-height:0}
-.tr-card{flex:1;min-width:0;display:flex;align-items:center;gap:2.5vw;padding:0 3vw 0 1vw;border-radius:22px;overflow:hidden;
+  background:rgba(5,8,22,.6);font-weight:800;font-size:clamp(10px,1.5vh,18px);letter-spacing:.1em;text-transform:uppercase;color:var(--a1)}
+.tr-cards{flex:1;display:flex;flex-direction:column;gap:1.4vh;min-height:0}
+.tr-card{flex:1 1 0;min-height:0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5vh;
+  padding:1vh 2vw;border-radius:22px;overflow:hidden;text-align:center;
   background:linear-gradient(135deg,color-mix(in srgb,var(--c) 22%,var(--night-2)),var(--night));
   border:1px solid color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--c) 30%,transparent)}
-.tr-pic{position:relative;flex:0 0 auto;height:100%;aspect-ratio:4/5}
+.tr-pic{position:relative;flex:1 1 0;min-height:0;aspect-ratio:4/5;max-width:100%}
 .tr-pic svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
-.tr-cb{min-width:0;display:grid;gap:.5vh}
-.tr-cb h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(14px,2.6vh,32px);line-height:1.05;text-transform:uppercase;text-wrap:balance}
-.tr-cb p{margin:0;color:var(--dim);font-size:clamp(10px,1.5vh,17px);line-height:1.25}
-.tr-cb .pr{justify-self:start;padding:.4vh 2.6vw;border-radius:999px;background:var(--frost);color:var(--night);
-  font-weight:800;font-size:clamp(14px,2.4vh,28px)}
-.tr-none{align-self:center;color:var(--dim);font-weight:800}
+.tr-cb{flex:none;min-width:0;display:grid;justify-items:center;gap:.4vh}
+.tr-cb h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(13px,2.3vh,28px);line-height:1.05;text-transform:uppercase;text-wrap:balance}
+.tr-cb p{margin:0;color:var(--dim);font-size:clamp(9px,1.4vh,16px);line-height:1.25}
+.tr-cb .pr{padding:.3vh 3vw;border-radius:999px;background:var(--frost);color:var(--night);
+  font-weight:800;font-size:clamp(13px,2.2vh,26px)}
+.tr-none{align-self:center;margin:auto;color:var(--dim);font-weight:800}
 
 /* Uhr / Happy Hour */
 .tr-banner{flex:1 1 0;min-height:0;display:flex;flex-direction:column;justify-content:center;border-radius:26px;overflow:hidden;
@@ -1666,17 +1667,17 @@ a { color: inherit; }
 
   </main>
    <div id="tresen" hidden>
-  <div class="tr-scene" id="trScene" aria-hidden="true"></div>
-
-  <header class="tr-head">
-    <div class="tr-ttl"><h1 class="title" id="trTitle"></h1><p class="script" id="trScript"></p></div>
-    <div class="tr-side"><img src="logo.png" alt=""><div class="tr-date" id="trDate"></div></div>
-  </header>
-
-  <section class="tr-specials">
-    <div class="tr-lab">★ Specials des Abends</div>
-    <div class="tr-cards" id="trSpecials"></div>
-  </section>
+    <div class="tr-top">
+    <div class="tr-left">
+      <div class="tr-id"><img src="logo.png" alt=""><div class="tr-date" id="trDate"></div></div>
+      <h1 class="title" id="trTitle"></h1>
+      <p class="script" id="trScript"></p>
+    </div>
+    <section class="tr-specials">
+      <div class="tr-lab">★ Specials des Abends</div>
+      <div class="tr-cards" id="trSpecials"></div>
+    </section>
+  </div>
 
   <section class="tr-banner" id="trBanner">
     <div class="tr-clock" id="trClock">--:--</div>
