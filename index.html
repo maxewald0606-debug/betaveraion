@@ -1305,6 +1305,10 @@ a { color: inherit; }
 .hm-games::-webkit-scrollbar { display: none; }
 
 
+/* Zeit-Vorschau (nur mit ?zeit=… im Link) */
+.zeit-vorschau { position: fixed; left: 50%; top: calc(6px + var(--safe-t)); transform: translateX(-50%); z-index: 10000; display: flex; align-items: center; gap: 8px; padding: 6px 12px;
+  border-radius: 999px; background: #ffd23f; color: #241500; font: 700 12px var(--f-body); text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,.5); white-space: nowrap; }
+.zeit-vorschau b { font-weight: 800; text-transform: uppercase; letter-spacing: .08em; } .zeit-vorschau i { font-style: normal; opacity: .75; }
 /* ===== Beerpong-Turnier ===== */
 .tn-link { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; text-decoration: none; color: #fff; margin-top: 10px;
   background: linear-gradient(120deg, rgba(255,211,110,.18), rgba(255,63,142,.18)); border: 1.5px solid rgba(255,211,110,.55); box-shadow: 0 0 18px rgba(255,140,80,.2); }
@@ -1935,6 +1939,28 @@ a { color: inherit; }
 </div>
 
 <script>
+/* ===== Zeit-Vorschau zum Testen: Link mit ?zeit=2026-11-25T18:30 tut auf DIESEM Gerät so, als wäre es diese Uhrzeit.
+   Die Uhr läuft ab dort normal weiter. Ohne ?zeit ändert sich nichts. ===== */
+(() => {
+  const q = new URLSearchParams(location.search).get("zeit"); if (!q) return;
+  const target = new Date(q.length <= 10 ? q + "T20:00" : q); if (isNaN(target)) return;
+  const RealDate = Date, off = target.getTime() - RealDate.now();
+  class VorschauDate extends RealDate {
+    constructor(...a) { if (a.length) super(...a); else super(RealDate.now() + off); }
+    static now() { return RealDate.now() + off; }
+  }
+  window.Date = VorschauDate;
+  window.__zeitVorschau = true;
+  const banner = () => {
+    const b = document.createElement("a");
+    b.className = "zeit-vorschau"; b.href = location.pathname;
+    const fmt = () => new Intl.DateTimeFormat("de-DE", { weekday: "short", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }).format(new Date());
+    b.innerHTML = `<b>Vorschau</b><span>${fmt()}</span><i>beenden ✕</i>`;
+    setInterval(() => { b.querySelector("span").textContent = fmt(); }, 15000);
+    document.body.appendChild(b);
+  };
+  if (document.body) banner(); else addEventListener("DOMContentLoaded", banner);
+})();
 /* =====================================================================
    INHALTE – hier wird alles gepflegt
    Neue Abende einfach in EVENTS ergänzen. Die Reihenfolge ergibt sich aus dem Datum.
@@ -5796,6 +5822,11 @@ function renderAdminBody(st) {
     html += `<details class="tn-card tn-all"><summary><b>Gruppenspiele</b><small>Paarungen bleiben fest</small></summary><p class="tn-muted">Die Achtelfinal-Paarungen sind schon fest. Korrekturen in der Gruppenphase ändern nur noch die Tabellen.</p>
       ${st.sched.map((m) => `<button type="button" class="tn-row" data-edit="${m.key}"><span>${m.g} · R${m.r}</span><span>${esc(m.a)} – ${esc(m.b)}</span><b>${m.s ? m.s.join(":") : "offen"}</b></button>`).join("")}</details>`;
   }
+  const isTest = st.groups.length && (st.d.teams || []).every((t) => TURNIER.testTeams.includes(t));
+  if (isTest && st.phase !== "setup") html += `<div class="tn-card"><div class="tn-ah"><b>Testmodus</b><small>nur bei Testdaten</small></div>
+    <div class="tn-r2">${st.phase === "gruppen" && !st.groupsDone ? `<button type="button" class="tn-btn ghost" id="tnFillG">Gruppenphase zufällig füllen</button>` : ""}${st.phase === "ko" && st.koOpen.length ? `<button type="button" class="tn-btn ghost" id="tnFillK">Nächste K.-o.-Runde zufällig</button>` : ""}</div>
+    <p class="tn-muted">Füllt offene Spiele mit Zufallsergebnissen – nur zum Ausprobieren.</p></div>`;
+  if (st.groups.length) html += `<div class="tn-card"><div class="tn-ah"><b>Als Spieler ansehen</b></div><a class="tn-btn ghost" href="#turnier">Spieleransicht öffnen</a></div>`;
   if (st.groups.length) html += `<div class="tn-card danger"><div class="tn-ah"><b>Gefahrenzone</b></div><button type="button" class="tn-btn red" id="tnReset">Turnier komplett zurücksetzen</button></div>`;
   body.innerHTML = html;
 
@@ -5817,6 +5848,19 @@ function renderAdminBody(st) {
     const af = tnAF(st.tables); if (!af) return;
     const ko = {}; af.forEach((p, i) => { ko["AF" + (i + 1)] = { a: p[0].team, b: p[1].team, la: p[0].lbl, lb: p[1].lbl }; });
     TStore.save({ phase: "ko", ko }).then(() => tnToast("Achtelfinale läuft")).catch(tnFail);
+  });
+  const rnd = (n) => Math.floor(Math.random() * n);
+  on("tnFillG", () => {
+    const p = {}; st.sched.filter((m) => !m.s).forEach((m) => { let a = rnd(11), b = rnd(11); if (a === 10 && b === 10) b = rnd(10); p["erg." + m.key] = [a, b]; });
+    TStore.save(p).then(() => tnToast("Gruppenphase gefüllt")).catch(tnFail);
+  });
+  on("tnFillK", () => {
+    const rd = st.koOpen[0].rd, p = {};
+    st.koOpen.filter((m) => m.rd === rd).forEach((m) => {
+      let s = m.timed ? [rnd(11), rnd(11)] : rnd(2) ? [10, rnd(10)] : [rnd(10), 10]; if (s[0] === 10 && s[1] === 10) s[1] = 9;
+      p["koErg." + m.key] = { t: [m.a, m.b], s, gg: s[0] === s[1] ? rnd(2) : null };
+    });
+    TStore.save(p).then(() => tnToast(rd + " gefüllt")).catch(tnFail);
   });
   if ($("tnReset")) tnArm($("tnReset"), "Turnier komplett zurücksetzen", () => { tnDraft = null; TStore.replace({}).then(() => tnToast("Turnier zurückgesetzt")).catch(tnFail); });
   body.querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => tnEditor(b.dataset.edit)));
