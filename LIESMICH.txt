@@ -20,3 +20,86 @@ Firebase (gemeinsame Zahlen, Bestenliste, Wünsche, Team-Login):
 - Sicherheitsregeln: Inhalt von firestore.rules unter Firestore Database -> Regeln einfügen
 - Team-Konto: club@ba-glauchau.de, Passwort = "exma-team-" + PIN (aktuell PIN 9876)
   PIN ändern = in Firebase unter Authentication -> Nutzer das Passwort ändern.
+
+Beerpong-Turnier (Miami Vibes):
+- Spieler: Kachel "Beerpong-Turnier" im Menü und auf der Miami-Seite (Link-Ende #turnier).
+  Die Kachel verschwindet von selbst, sobald ein Turniersieger feststeht.
+- Team: Team-Login -> "Turnierleitung öffnen". Teams einfügen, auslosen, starten, Ergebnisse eintragen.
+- Vor dem echten Turnier: Testläufe mit "Turnier komplett zurücksetzen" löschen.
+- Einstellungen im Code unter TURNIER (z. B. csv = Link zur veröffentlichten Teamliste).
+
+Testen mit anderer Uhrzeit: an den Link ?zeit=2026-11-25T18:30 anhängen (gilt nur für dieses Gerät).
+
+
+GEHEIMES MINISPIEL „POLNISCHEN“
+- Zu finden: 5× schnell auf das Logo oben links tippen (Hauptmenü oder Startseite). Direkt-Link: …/#polnischen
+- Links tippen = nach hinten lehnen, rechts tippen = nach vorne. Nach vorne lehnen macht schneller, aber wackliger.
+- Bestenliste: Meter, bei Gleichstand die Zeit. Sie ist nur im Spiel zu sehen – und „Top 10“ erst, wenn man selbst einmal gespielt hat.
+- Team-Bereich: Unter „Bestenlisten“ gibt es den Reiter „Polnischen“ zum Löschen einzelner Namen.
+- WICHTIG: Für die öffentliche Bestenliste muss die neue firestore.rules einmal in Firebase veröffentlicht werden
+  (Abschnitt „match /polnischen/{id}“). Ohne das wird nur auf dem eigenen Handy gespeichert.
+- Schwierigkeit einstellen: im Code nach „const TUNE“ suchen (imp = Stoß pro Tipp, g0/a0 = Kippen/Schwanken am Anfang).
+
+ABZEICHEN
+- Neue Datei abzeichen.svg: enthält alle Abzeichen-Bilder. Muss mit hochgeladen werden (neben index.html und sw.js).
+- Kachel „Abzeichen“ im Menü, Seite …/#abzeichen. Gespeichert wird nur auf dem jeweiligen Handy (kein Konto, nichts in Firebase).
+  Handywechsel oder Browserdaten löschen = Abzeichen weg. Das steht auch hinter dem „i“ oben auf der Seite.
+- Clubabend zählt von 21:00 bis 1:30. Matrikel-Abzeichen: Sieger wird am Ende des Abends aus den Live-Zahlen genommen
+  (darum die Matrikel-Zahlen weiter jeden Abend zurücksetzen). „Comeback“ gibt es erst ab 10 Getränken Rückstand.
+- Minispiele: Beerpong, Busfahrer und Zapfmeister haben gestufte Abzeichen (Grün → Blau → Rot → Lila als Chip-Stapel),
+  jede Stufe zählt einzeln. Schwellen im Code unter „const BADGE_STUFEN“:
+  Beerpong 5/10/20/30 Becher, Busfahrer 5/10/20/35 Karten, Zapfmeister 3/5/10/15 Gläser.
+  Gold (oben in „Gold“): Beerpong 50 Becher, Busfahrer alle 51 Karten, Zapfmeister Glas 19 (99 % gefordert).
+- Neuer Themenabend mit eigenem Abzeichen: im EVENTS-Eintrag abzeichen: "<id>" setzen und in BADGE_LIST
+  einen Eintrag mit cat: "Gold" anlegen. Dafür braucht es ein neues Bild in abzeichen.svg (<symbol id="b-<id>">).
+- Liste aller Abzeichen und Bedingungen: im Code nach „const BADGE_LIST“ suchen.
+- Seit v84: 81 Abzeichen, in jeder Kategorie thematisch sortiert. Weitere Stapel (Grün → Lila):
+  Gesamt-Becher, -Karten, -Gläser (200/500/1000/2000), Polnischen gesamt (2/5/10/21 km, geheim),
+  Clubabende (1/3/10/25: Neu hier, Stammgast, Inventar, Legende) und Sammler (15/25/35/45 Abzeichen).
+  Sammler Gold = alle Abzeichen außer den goldenen. Alte Abzeichen „Neu hier/Stammgast/Inventar“ werden automatisch übernommen.
+  Schwellen ändern: im Code „const BADGE_STUFEN“.
+
+FOTOGALERIE (Google Drive)
+- Menü-Kachel „Fotowand“ (…/#fotowand): ein Polaroid pro vergangenem Clubabend, dahinter die Fotos (…/#fotos-<id>).
+- Ist ein Abend vorbei (eingetragenes „ende“), verschwindet er automatisch aus Startseiten-Karussell und Menü – auch
+  bei offener App. Übrig bleibt nur sein Polaroid auf der Fotowand (erscheint automatisch, „Neue Fotos“ eine Woche lang).
+- Ist ein Abend vorbei, führt sein alter Link (…/#vodka-night) automatisch zu den Fotos. Die Infoseite des Abends
+  (Drinks, Ablauf) ist danach nicht mehr erreichbar.
+- Pro Abend im EVENTS-Eintrag bei fotos: den Link zum Drive-Ordner eintragen (Vodka Night ist schon eingetragen).
+- Der Ordner muss freigegeben sein: In Drive Rechtsklick auf den Ordner → Freigeben → Allgemeiner Zugriff:
+  „Jeder, der über den Link verfügt“ → Betrachter. Unterordner (z. B. Fotobox) werden mit angezeigt.
+- Ohne API-Schlüssel (DRIVE_KEY leer) öffnet „Fotos ansehen“ einfach den Ordner in Google Drive.
+- Mit Schlüssel zeigt die App die Fotos selbst (Vorschau auf der Abend-Seite, Galerie, Vollbild mit Wischen).
+  Schlüssel einmalig anlegen (kostenlos, keine Kreditkarte):
+  1. console.cloud.google.com öffnen, oben das Projekt „exma-bar-app“ wählen.
+  2. Menü → APIs & Dienste → Bibliothek → „Google Drive API“ → Aktivieren.
+  3. APIs & Dienste → Anmeldedaten → Anmeldedaten erstellen → API-Schlüssel.
+  4. Schlüssel bearbeiten: Anwendungseinschränkung „Websites“ → https://exmabarapp.github.io/*
+     API-Einschränkung: „Schlüssel einschränken“ → nur „Google Drive API“. Speichern.
+  5. Schlüssel in index.html bei const DRIVE_KEY = "…" eintragen.
+- Foto löschen: einfach in Google Drive löschen. Die App zeigt nach spätestens 5 Minuten den neuen Stand.
+- „Entfernen lassen“ im Vollbild schickt eine E-Mail mit Dateiname und Link an die Club-Adresse.
+
+MUSIKWÜNSCHE & DJ-PULT
+- Gäste: Kachel „Musikwünsche“ (…/#musik). Wünschen geht nur während des Clubabends (Bar offen).
+  Songsuche mit Cover über die iTunes-Suche von Apple; wird nichts gefunden: „Selbst eintragen“.
+  Pro Handy 1 eigener Wunsch alle 10 Minuten. Gleiche Songs (auch Remix/andere Schreibweise) werden zusammengelegt,
+  ein zweiter Wunsch zählt dann als 🔥-Stimme. Dazu „Was soll mehr laufen?“ (Techno, Charts, Hip-Hop, Party-Klassiker).
+- Wird ein Wunsch gespielt, sieht der Gast „Dein Song läuft!“ und bekommt das Abzeichen „Dein Song läuft!“.
+- DJ: im Team-Bereich mit PIN anmelden → „DJ-Pult öffnen“ (…/#dj). Liste nach Votes, Knöpfe
+  „Gespielt“, „Passt nicht“ (nur heute weg) und „Sperren“ (dauerhaft: nur dieser Song oder ganzer Interpret).
+  Unten „Dauerhaft gesperrt“ mit „Entsperren“. Gesperrtes lehnt auch die Datenbank ab (Regeln).
+- Daten: Firestore musik/<Abend-ID> (ein Dokument pro Abend), musikSperre/… und musikSperreInfo/….
+- WICHTIG: Für die Musikwünsche müssen die neuen firestore.rules in Firebase eingefügt werden.
+
+
+ExMa X-Mas (02.12.) – seit v86
+- Abend in EVENTS mit thema "xmas": Birken, Holzbuden, Lichterkette (flacher Stil, Szene in sceneXmas).
+- Untertitel "Not So Silent Night"; das Wort aus "streich" wird rot durchgestrichen (Feld weglassen = kein Gag).
+- Infokasten auf der großen Kachel: Feld "kachelInfo" (zeit = fett, text = darunter).
+- Special Drinks: Christmas Spritz (bild "spritz") und Lebkuchen Espresso Martini (bild "martini").
+  Preis noch offen: preis: null zeigt "Preis folgt" – einfach die Zahl eintragen, z. B. preis: 4.5
+- Happy Hour: happyHour: null = keine. Bei Bedarf wie bei der Vodka Night eintragen.
+- Gold-Abzeichen "Glühwein-Gang" (abzeichen: "xmas") gibt es für alle, die an dem Abend dabei sind.
+- Bildausschnitte für Vorschau-Karte, Polaroid und Tresen: SCENE_VB im Code.
+- Bei jedem Update APP_V in index.html und VERSION in sw.js zusammen hochzählen.
