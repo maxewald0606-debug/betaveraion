@@ -1629,11 +1629,10 @@ body.fg-open { overflow: hidden; }
 .tp-tn { display: flex; align-items: center; gap: 12px; padding: 14px; margin: 2px 0 16px; border-radius: 20px; background: linear-gradient(120deg, #ff2e88, #ff8a3d); color: #fff; text-decoration: none; }
 .tp-tn > span:first-child { font-size: 28px; } .tp-tn b { display: block; font-size: 17px; } .tp-tn small { font-size: 12.5px; opacity: .92; } .tp-tn i { margin-left: auto; width: 22px; flex: none; }
 .tp-game { margin: 0 0 16px; border-radius: 24px; overflow: hidden; isolation: isolate; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
-.tp-game .tile-btn.tp-art { position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 150px; margin: 0; padding: 14px 16px; border-radius: 24px 24px 0 0; border-width: 0 0 1px; overflow: hidden; text-decoration: none; }
+.tp-game .tile-btn.tp-art { position: relative; display: flex; flex-direction: column; justify-content: flex-end; margin: 0; overflow: hidden; text-decoration: none; }
 .tp-game .tp-art b { font: 400 24px/1 var(--f-display); text-transform: uppercase; color: #fff; }
 .tp-game .tp-art small { display: block; margin-top: 4px; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.75); }
-.tp-game .tp-art .mini-tag { position: absolute; left: 14px; top: 12px; }
-.tp-lb { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center; padding: 12px 16px 14px; color: #fff; }
+.tp-lb { display: grid; color: #fff; min-width: 0; }
 .tp-rows { display: grid; gap: 5px; min-width: 0; }
 .tp-rows h4 { margin: 0; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); }
 .tp-rows p { margin: 0; display: flex; gap: 8px; align-items: baseline; font-size: 13px; font-weight: 700; }
@@ -1670,6 +1669,120 @@ body.fg-open { overflow: hidden; }
 .tp-all { display: flex; align-items: center; gap: 8px; margin: 12px 0 4px; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #fff; font-weight: 800; text-decoration: none; }
 .tp-all span { margin-left: auto; color: #ffcf4a; } .tp-all svg { width: 18px; height: 18px; }
 .tp-note { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,.5); text-align: center; }
+
+/* --- Drinks-Seite v99: Motto-Banner oben am Rand, Theme-Farben, Special-Kacheln quer --- */
+.view-detail.clubby.drinks-page:not(.no-ev) { color: var(--frost); background: radial-gradient(120% 420px at 50% 0, color-mix(in srgb, var(--a3) 26%, transparent), transparent 75%) local, linear-gradient(180deg, var(--night2, var(--night)), var(--night) 520px) local; }
+.drinks-page:not(.no-ev) .d-head { position: absolute; left: 0; right: 0; top: 0; z-index: 5; }
+.drinks-page:not(.no-ev) .page-h { display: none; }
+.drinks-page:not(.no-ev) .club-wrap { padding-top: 0; }
+.tp-hero { position: relative; display: block; overflow: hidden; isolation: isolate; height: calc(270px + var(--safe-t)); margin: 0 -20px; color: #fff; text-decoration: none; background: var(--night); border-bottom: 1px solid color-mix(in srgb, var(--a1) 40%, transparent); }
+.tp-hero .tile-scene { position: absolute; inset: 0; z-index: -2; }
+.tp-hero .tile-scene svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tp-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, color-mix(in srgb, var(--night) 55%, transparent) 0%, transparent 30%, color-mix(in srgb, var(--night) 70%, transparent) 62%, var(--night) 100%); }
+.tp-hero-txt { position: absolute; left: 20px; right: 20px; bottom: 16px; }
+.tp-hero-lbl { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font: 800 11px var(--f-body); letter-spacing: .12em; text-transform: uppercase; background: var(--a3); color: #fff; box-shadow: 0 0 14px color-mix(in srgb, var(--a3) 60%, transparent); }
+.tp-hero-lbl .live-dot { width: 7px; height: 7px; }
+.tp-hero-t { margin: 8px 0 0; font-family: var(--f-display); font-weight: 400; font-size: 44px; line-height: .95; text-transform: uppercase; color: #fff; text-shadow: 0 0 18px var(--a3), 0 2px 10px rgba(0,0,0,.5); }
+.tp-hero-t span { display: block; }
+.tp-hero-sub { margin: 4px 0 0; font-family: var(--f-script); font-size: 22px; color: var(--script, var(--a1)); text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+.tp-hero-sub s { text-decoration-color: #e8303c; text-decoration-thickness: 2px; }
+.tp-hero-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tp-hero-row span { padding: 5px 10px; border-radius: 999px; font: 800 12.5px var(--f-body); background: rgba(0,0,0,.42); border: 1px solid rgba(255,255,255,.22); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.tp-hero-row span.hot { background: var(--a1); color: var(--night); border-color: transparent; }
+.drinks-page .block { margin: 0; }
+.drinks-page .sec-title { color: #fff; }
+.drinks-page .drinks { grid-template-columns: 1fr; gap: 14px; }
+.drinks-page .drink { position: relative; display: grid; grid-template-columns: 124px 1fr; align-items: center; min-height: 156px; border-radius: 26px;
+  background: radial-gradient(90% 120% at 0% 50%, color-mix(in srgb, var(--c) 30%, transparent), transparent 70%), linear-gradient(120deg, color-mix(in srgb, var(--c) 16%, var(--night)), var(--night) 75%);
+  border: 1.5px solid color-mix(in srgb, var(--c) 60%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 28%, transparent), inset 0 1px 0 rgba(255,255,255,.08); }
+.drinks-page .drink::before { content: "Special"; position: absolute; right: 14px; top: 12px; padding: 3px 9px; border-radius: 999px; font: 800 10px var(--f-body); letter-spacing: .12em; text-transform: uppercase; background: color-mix(in srgb, var(--c) 85%, #fff); color: var(--night); }
+.drinks-page .drink-pic { height: 156px; aspect-ratio: auto; max-height: none; background: radial-gradient(60% 55% at 50% 50%, color-mix(in srgb, var(--c) 60%, transparent), transparent 72%); }
+.drinks-page .drink-pic::after { display: none; }
+.drinks-page .drink-body { padding: 16px 16px 16px 4px; gap: 6px; }
+.drinks-page .drink h3 { font-size: 22px; padding-right: 64px; color: #fff; text-shadow: 0 0 12px color-mix(in srgb, var(--c) 70%, transparent); }
+.drinks-page .drink p { font-size: 13px; }
+.drinks-page .drink .price { font-size: 18px; padding: 7px 16px; background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 60%, #fff)); color: var(--night); box-shadow: 0 4px 14px color-mix(in srgb, var(--c) 45%, transparent); }
+
+/* Specials im Menü am Clubabend: gleiche große Querkacheln */
+.sp-bigs { grid-template-columns: 1fr; gap: 14px; }
+.sp-big { position: relative; display: grid; grid-template-columns: 124px 1fr; align-items: center; min-height: 156px; border-radius: 26px;
+  background: radial-gradient(90% 120% at 0% 50%, color-mix(in srgb, var(--c) 30%, transparent), transparent 70%), linear-gradient(120deg, color-mix(in srgb, var(--c) 16%, var(--night)), var(--night) 75%);
+  border: 1.5px solid color-mix(in srgb, var(--c) 60%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 28%, transparent), inset 0 1px 0 rgba(255,255,255,.08); }
+.sp-big::before { content: "Special"; position: absolute; right: 14px; top: 12px; padding: 3px 9px; border-radius: 999px; font: 800 10px var(--f-body); letter-spacing: .12em; text-transform: uppercase; background: color-mix(in srgb, var(--c) 85%, #fff); color: var(--night); }
+.sp-big-pic { height: 156px; aspect-ratio: auto; max-height: none; background: radial-gradient(60% 55% at 50% 50%, color-mix(in srgb, var(--c) 60%, transparent), transparent 72%); }
+.sp-big-pic::after { display: none; }
+.sp-big-body { padding: 16px 16px 16px 4px; gap: 6px; }
+.sp-big h3 { font-size: 22px; padding-right: 64px; color: #fff; text-shadow: 0 0 12px color-mix(in srgb, var(--c) 70%, transparent); }
+.sp-big p { font-size: 13px; }
+.sp-big .price { font-size: 18px; padding: 7px 16px; background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 60%, #fff)); color: var(--night); box-shadow: 0 4px 14px color-mix(in srgb, var(--c) 45%, transparent); }
+
+.sp-big { text-decoration: none; color: #fff; }
+.sp-big p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: rgba(255,255,255,.72); }
+.ph-karte { width: 100%; }
+/* --- Leiste am Clubabend: zwei Glas-Hälften mit runder Aussparung, in der Mitte der gelbe „An der Bar“-Knopf --- */
+.tabbar.live { background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 0; overflow: visible; }
+.tabbar.live::before { display: none; }
+.tb-side { position: absolute; top: 0; bottom: 0; display: flex; padding: 5px; border-radius: 31px;
+  background: rgba(26,20,46,.78); -webkit-backdrop-filter: blur(18px) saturate(1.5); backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid rgba(255,255,255,.2); box-shadow: 0 14px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.14); }
+.tb-side.l { left: 0; right: calc(50% + 31px); border-radius: 31px 0 0 31px; padding-right: 12px;
+  -webkit-mask: radial-gradient(circle at calc(100% + 31px) 50%, transparent 46px, #000 46.5px); mask: radial-gradient(circle at calc(100% + 31px) 50%, transparent 46px, #000 46.5px); }
+.tb-side.r { right: 0; left: calc(50% + 31px); border-radius: 0 31px 31px 0; padding-left: 12px;
+  -webkit-mask: radial-gradient(circle at -31px 50%, transparent 46px, #000 46.5px); mask: radial-gradient(circle at -31px 50%, transparent 46px, #000 46.5px); }
+.tb-side a { flex: 1; }
+/* feine Leuchtkante entlang der runden Aussparung */
+.tb-ring { position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 1px rgba(255,255,255,.12); clip-path: inset(15px -2px 15px -2px); }
+.tb-fab { position: absolute; left: 50%; top: 50%; z-index: 2; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; text-decoration: none;
+  /* gedecktes PayPal-Gelb als Glas: halbdurchlässig und weichgezeichnet wie die Leiste */
+  background: linear-gradient(180deg, rgba(255,196,57,.36), rgba(214,150,20,.28)), rgba(26,20,46,.55); -webkit-backdrop-filter: blur(18px) saturate(1.5); backdrop-filter: blur(18px) saturate(1.5); color: #ffe7a8;
+  border: 1px solid rgba(255,214,120,.45); box-shadow: 0 14px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.2); transition: transform .2s; -webkit-tap-highlight-color: transparent; }
+.tb-fab:active { transform: scale(.94); }
+.tabbar a.tb-fab { flex: none; width: 74px; height: 74px; border-radius: 50%; color: #ffe7a8; gap: 0; }
+.tb-fab svg path[fill="#003087"] { fill: #ffe7a8; } .tb-fab svg path[fill="#009cde"] { fill: #ffc439; }
+.tabbar a.tb-fab.on { background: linear-gradient(180deg, rgba(255,196,57,.36), rgba(214,150,20,.28)), rgba(26,20,46,.55); }
+.tb-fab svg { width: 30px; height: 30px; }
+.tb-fab-t { font: 800 11px var(--f-body); letter-spacing: .02em; }
+/* --- Leiste mit 6 Tabs am Clubabend --- */
+.tabbar.six a { font-size: 9.5px; }
+.tabbar.six a svg { width: 21px; height: 21px; }
+.tab-ava { width: 24px; height: 24px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; box-shadow: 0 0 0 1.5px rgba(255,255,255,.7); }
+.tab-ava img { width: 100%; height: 100%; object-fit: cover; }
+.tab-ava i { width: 100%; height: 100%; display: grid; place-items: center; font-style: normal; font-size: 13px; }
+.tab-ava b { width: 100%; height: 100%; display: grid; place-items: center; font: 400 12px var(--f-display); background: conic-gradient(from 210deg, #2d6bff, #ff2e88, #ffb347, #2d6bff); }
+.tabbar a.on .tab-ava { box-shadow: 0 0 0 2px #ffcf4a; }
+/* --- Spiele-Seite v99: Hochkant-Kachel wie im Menü --- */
+.tp-game { display: grid; grid-template-columns: 148px 1fr; align-items: stretch; }
+.tp-game .tile-btn.tp-art { height: 196px; border-radius: 24px 0 0 24px; border-width: 0 1px 0 0; padding: 12px; }
+.tp-game .tp-art .tp-art-t { position: relative; z-index: 1; }
+.tp-game .tp-art b { font-size: 18px; }
+.tp-game .tp-art small { font-size: 11.5px; }
+.tp-lb { grid-template-columns: 1fr; align-content: center; gap: 10px; padding: 14px; }
+.tp-play { justify-self: start; padding: 10px 22px; }
+.tp-mine { grid-column: auto; }
+/* --- Profilbild --- */
+.tp-ava { position: relative; border: 0; padding: 0; cursor: pointer; overflow: visible; color: #fff; }
+.tp-ava > img, .tp-ava > i, .tp-ava > b { width: 100%; height: 100%; border-radius: 50%; display: grid; place-items: center; object-fit: cover; font-style: normal; }
+.tp-ava > i { font-size: 36px; }
+.tp-ava > b { font: 400 30px var(--f-display); }
+.tp-ava-cam { position: absolute; right: -2px; bottom: -2px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #14111f; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+.tp-ava-cam svg { width: 15px; height: 15px; }
+.tp-avapick { padding: 14px; border-radius: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); color: #fff; }
+.tp-avapick[hidden] { display: none; }
+.tp-avapick p { margin: 0 0 10px; font-weight: 800; }
+.tp-avagrid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.tp-avagrid button { aspect-ratio: 1; border: 0; border-radius: 50%; font-size: 22px; display: grid; place-items: center; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35); }
+.tp-avaacts { display: flex; gap: 8px; margin-top: 12px; }
+.tp-avaacts > * { display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 14px; border: 0; font: 800 14px var(--f-body); background: rgba(255,255,255,.12); color: #fff; cursor: pointer; }
+.tp-avafile { background: #fff !important; color: #14111f !important; }
+.tp-avafile svg { width: 17px; height: 17px; }
+.tp-avafile input { display: none; }
+.tp-avapick small { display: block; margin-top: 10px; font-size: 11.5px; color: rgba(255,255,255,.55); }
+/* --- Dezember: Leiste mit Schneekante und Gold --- */
+.app.dezember .tabbar { border-color: rgba(233,183,124,.45); }
+.app.dezember .tabbar::before { content: ""; position: absolute; left: 26px; right: 26px; top: -4px; height: 10px; pointer-events: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14' preserveAspectRatio='none'%3E%3Cpath d='M0 14 V8 C6 3 14 3 20 7 C28 2 40 2 48 6 C58 1 70 2 80 6 C90 2 104 3 112 7 C122 2 136 2 146 6 C156 1 170 2 180 6 C190 3 204 2 214 7 C224 2 238 3 248 6 C258 2 272 2 282 7 C288 4 296 4 300 8 V14 Z' fill='%23f3f6fb'/%3E%3C/svg%3E") center / 100% 100% no-repeat; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+.app.dezember .tabbar a.on svg { color: #e9b77c; }
+.app.dezember .tabbar a.on .tab-ava { box-shadow: 0 0 0 2px #e9b77c; }
 /* ===== Feinschliff Standard-Design ===== */
 .tile-rank { position: relative; overflow: hidden; }
 .rk-art { position: absolute; right: 10px; top: 7px; width: 74px; height: 48px; pointer-events: none; }
@@ -2466,7 +2579,7 @@ const CLUB = {
 };
 
 /* App-Version: bei jedem Update zusammen mit VERSION in sw.js hochzählen (lädt dann z. B. abzeichen.svg frisch) */
-const APP_V = "98";
+const APP_V = "102";
 
 const EVENTS = [
   {
@@ -7868,9 +7981,10 @@ const phaseStyle = (th) => {
 };
 function phSpecials(ev) {
   const list = ev.specials || []; if (!list.length) return "";
-  return `<h3 class="ph-h">Heute im Angebot</h3><div class="ph-specs n${Math.min(list.length, 3)}">${list.map((sp) => {
+  /* große Querkacheln wie auf der Drinks-Seite */
+  return `<h3 class="ph-h">Heute im Angebot</h3><div class="drinks sp-bigs">${list.map((sp) => {
     const d = DRINKS[sp.bild] || DRINKS.lemon;
-    return `<a class="ph-spec" href="#${ev.id}" style="--c:${d.glow}"><span class="ph-art">${drinkArt(sp.bild)}</span><span class="ph-sn"><b>${esc(sp.name)}</b><em>${trEuro(sp.preis)}</em></span></a>`;
+    return `<a class="drink sp-big" href="#drinks" style="--c:${d.glow}"><div class="drink-pic">${drinkArt(sp.bild)}</div><div class="drink-body"><h3>${esc(sp.name)}</h3>${sp.info ? `<p>${esc(sp.info)}</p>` : ""}<span class="price">${euro(sp.preis)}</span></div></a>`;
   }).join("")}</div>`;
 }
 function phHappy(ev, now) {
@@ -8095,7 +8209,7 @@ function buildMenu() {
           <div class="ph-self" id="phSelf"></div>
           <a class="ph-more" href="#ranking">Zum Matrikel-Ranking ${ICON_ARROW}</a></div>
         ${phHappy(ev, tNow)}${phSpecials(ev)}
-        <div class="ph-row"><a class="ph-btn pp" href="#paypal">PayPal</a><a class="ph-btn" href="#${ev.id}">Getränkekarte</a></div>
+        <a class="ph-btn ph-karte" href="#drinks">Ganze Getränkekarte</a>
       </div>
       ${games}${hero("Heute", null)}${next}${rest}`;
   } else if (ph && ph.phase === "rueck") {
@@ -8143,6 +8257,7 @@ function buildMenu() {
   watchAnim(g);
   dekoApply();
   fitTileTitles();
+  tabSync();
 }
 function fitMenu() {
   document.querySelectorAll(".tile-title").forEach((el) => { if (!el.closest(".fw-mini")) fitTitle(el, el.closest(".hm-hero") ? (el.closest(".t-xmas") ? 84 : 58) : 34); });
@@ -8231,6 +8346,10 @@ const TAB_ICON = {
   ich: '<circle cx="12" cy="9" r="5"/><path d="M8.5 13 7 21l5-2.5L17 21l-1.5-8"/>'
 };
 const TABS = [["start", "", "Start"], ["drinks", "drinks", "Drinks"], ["spiele", "spiele", "Spiele"], ["musik", "musik", "Musik"], ["ich", "ich", "Ich"]];
+/* am Clubabend selbst (Beginn bis 1:30) sind Sauf-Ranking und PayPal wichtiger als die Spiele */
+const TABS_LIVE = [["start", "", "Start"], ["drinks", "drinks", "Drinks"], ["ranking", "ranking", "Ranking"], ["paypal", "paypal", "PayPal"], ["musik", "musik", "Musik"], ["ich", "ich", "Ich"]];
+TAB_ICON.ranking = '<path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 10H5z"/><path d="M5 21h14"/>';
+TAB_ICON.paypal = '<path d="M7 21l2.2-14h5.3c2.7 0 4.2 1.5 3.7 4-.5 2.8-2.6 4.2-5.4 4.2h-2.3L9.6 21z"/><path d="M5.5 17.5L7.8 3h5.3c1.6 0 2.8.5 3.4 1.4"/>';
 /* welcher Tab leuchtet bei welcher Seite */
 function tabFor(id) {
   if (!id) return "start";
@@ -8241,15 +8360,33 @@ function tabFor(id) {
   return null;
 }
 const TAB_HIDE = ["team", "turnier-team", "dj", "polnischen"];
-function tabbarInit() {
-  if ($("tabbar")) return;
-  app.insertAdjacentHTML("beforeend", `<nav class="tabbar" id="tabbar" aria-label="Schnellmenü">${TABS.map(([k, h, t]) =>
-    `<a href="#${h}" data-tab="${k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TAB_ICON[k]}</svg><span>${t}</span></a>`).join("")}</nav>`);
-  app.classList.add("has-tabbar");
+let tabMode = "", tabAva = "";
+function tabbarRender() {
+  const bar = $("tabbar"); if (!bar) return;
+  const ph = clubPhase(), mode = ph && ph.phase === "live" ? "live" : "normal", av = avatarKey();
+  if (mode === tabMode && av === tabAva) return;
+  tabMode = mode; tabAva = av;
+  const tab = ([k, h, t]) => `<a href="#${h}" data-tab="${k}">${k === "ich" && av ? `<span class="tab-ava">${avatarHTML()}</span>` : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TAB_ICON[k]}</svg>`}<span>${t}</span></a>`;
+  bar.classList.toggle("live", mode === "live");
+  if (mode === "live") {
+    const T = Object.fromEntries(TABS.map((x) => [x[0], x]));
+    bar.innerHTML = `<div class="tb-side l">${tab(T.start)}${tab(T.drinks)}</div>
+      <a class="tb-fab" id="tbFab" href="${esc(CLUB.paypal)}" target="_blank" rel="noopener" aria-label="Mit PayPal bezahlen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#003087" d="M7.5 21H4.3a.5.5 0 0 1-.5-.6L6.6 3.4A.8.8 0 0 1 7.4 2.7h6.1c3.3 0 5.3 1.7 4.8 4.9-.6 3.8-3.1 5.5-6.6 5.5H9.9a.8.8 0 0 0-.8.7z"/><path fill="#009cde" d="M19.3 7.9c-.7 3.9-3.3 5.7-6.9 5.7h-1.1a.8.8 0 0 0-.8.7l-1.1 6.8a.5.5 0 0 0 .5.6h2.8a.7.7 0 0 0 .7-.6l.6-3.8a.7.7 0 0 1 .7-.6h.5c3.1 0 5.4-1.3 6-4.9.3-1.6 0-2.9-.9-3.9z"/></svg>
+        <span class="tb-fab-t">PayPal</span>
+      </a>
+      <div class="tb-side r">${tab(T.musik)}${tab(T.ich)}</div>`;
+  } else bar.innerHTML = TABS.map(tab).join("");
   /* Start antippen, wenn man schon auf der Startseite ist: nach ganz oben */
-  $("tabbar").querySelector('[data-tab="start"]').addEventListener("click", (e) => {
+  bar.querySelector('[data-tab="start"]').addEventListener("click", (e) => {
     if (!location.hash.slice(1)) { e.preventDefault(); $("menu").scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); }
   });
+}
+function tabbarInit() {
+  if ($("tabbar")) return;
+  app.insertAdjacentHTML("beforeend", `<nav class="tabbar" id="tabbar" aria-label="Schnellmenü"></nav>`);
+  app.classList.add("has-tabbar");
+  tabbarRender();
   /* Tastatur offen: Leiste weg, sonst verdeckt sie das Eingabefeld */
   document.addEventListener("focusin", (e) => { if (e.target.matches("input, textarea, select")) app.classList.add("kbd-open"); });
   document.addEventListener("focusout", () => setTimeout(() => { if (!document.activeElement || !document.activeElement.matches("input, textarea, select")) app.classList.remove("kbd-open"); }, 60));
@@ -8257,6 +8394,7 @@ function tabbarInit() {
 }
 function tabSync() {
   const bar = $("tabbar"); if (!bar) return;
+  tabbarRender();
   const id = location.hash.slice(1), on = tabFor(id);
   bar.querySelectorAll("[data-tab]").forEach((a) => { a.classList.toggle("on", a.dataset.tab === on); if (a.dataset.tab === on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   app.classList.toggle("tabbar-off", TAB_HIDE.includes(id));
@@ -8272,17 +8410,35 @@ function drinksEvent() {
 function renderDrinksPage() {
   const de = drinksEvent(), ev = de && de.ev, ph = clubPhase();
   const live = ph && ph.phase === "live";
-  const head = ev ? `<a class="tp-chip" href="#${ev.id}"><span><small>${esc(de.label)}</small><b>${esc(ev.titel.join(" "))} · ${esc(ev.wd)} ${esc(ev.dm)}</b></span><i>ab ${esc(ev.time)} Uhr</i></a>` : "";
-  const blocks = ev ? drinkBlocks(ev) : drinkBlocks({ thema: "club" }).replace(/^[\s\S]*?(<section class="block" id="s-karte")/, "$1");
-  pageShell("drinks-page", "Drinks", `
-    ${head}
+  const hh = ev && ev.happyHour ? hhStatus(ev) : null;
+  const hero = ev ? `<a class="tp-hero" href="#${ev.id}" aria-label="${esc(ev.titel.join(" "))} – Infos zum Abend">
+      <div class="tile-scene" aria-hidden="true">${[0, 1, 2].map(() => `<svg viewBox="${(SCENE_VB[ev.thema] && SCENE_VB[ev.thema].fw) || "0 140 400 520"}" preserveAspectRatio="xMidYMid slice"></svg>`).join("")}</div>
+      <div class="tp-hero-txt">
+        <span class="tp-hero-lbl">${live ? '<i class="live-dot"></i>' : ""}${esc(de.label)}</span>
+        <h2 class="tp-hero-t">${titleHTML(ev)}</h2>
+        ${ev.untertitel ? `<p class="tp-hero-sub">${subHTML(ev)}</p>` : ""}
+        <div class="tp-hero-row"><span>${esc(ev.wd)} ${esc(ev.dm)}</span><span>ab ${esc(ev.time)} Uhr</span>${hh && !hh.muted ? `<span class="hot">Happy Hour ${esc(ev.happyHour.von)}–${esc(ev.happyHour.bis)}</span>` : ""}</div>
+      </div>
+    </a>` : "";
+  const blocks = ev ? drinkBlocks(ev) : drinkBlocks({ thema: "club" });
+  pageShell("drinks-page" + (ev ? "" : " no-ev"), "Drinks", `
+    ${hero}
     ${live ? `<a class="club-card" href="#ranking"><span class="club-card-live"><span class="live-dot"></span>Live</span><b>Sauf-Ranking</b><span>Trag ein, was du dir geholt hast</span><i>${ICON_ARROW}</i></a>` : ""}
     <div class="tp-drinks">${blocks}</div>
     <a class="pay-btn tp-pay" href="${esc(CLUB.paypal)}" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#003087" d="M7.5 21H4.3a.5.5 0 0 1-.5-.6L6.6 3.4A.8.8 0 0 1 7.4 2.7h6.1c3.3 0 5.3 1.7 4.8 4.9-.6 3.8-3.1 5.5-6.6 5.5H9.9a.8.8 0 0 0-.8.7z"/><path fill="#009cde" d="M19.3 7.9c-.7 3.9-3.3 5.7-6.9 5.7h-1.1a.8.8 0 0 0-.8.7l-1.1 6.8a.5.5 0 0 0 .5.6h2.8a.7.7 0 0 0 .7-.6l.6-3.8a.7.7 0 0 1 .7-.6h.5c3.1 0 5.4-1.3 6-4.9.3-1.6 0-2.9-.9-3.9z"/></svg>
       Mit PayPal bezahlen
     </a>`);
+  if (!ev) return;
+  /* Mottofarben und -schrift des Abends für die ganze Seite, Szene als Banner */
+  const d = $("detail");
+  d.classList.add("t-" + ev.thema);
+  d.style.cssText = themeStyle(ev.th);
+  const layers = (SCENES[ev.thema] || sceneIce)();
+  d.querySelectorAll(".tp-hero .tile-scene svg").forEach((svg, k) => { svg.innerHTML = prefixIds(layers[k], `dh${k}_`); });
+  fitTitle(d.querySelector(".tp-hero-t"), 52);
 }
+
 const GAME_TABS = [
   { key: "beerpong", emo: "🏓", cls: "tile-game", name: "Beerpong", sub: "Becher treffen", art: () => gameDemo(), mine: () => { const b = parseInt(store.get("exmaBpBest") || "0", 10); return b ? `${b} Becher` : ""; } },
   { key: "busfahrer", emo: "🃏", cls: "tile-bus", name: "Busfahrer", sub: "Höher oder tiefer", art: () => busDemo(), mine: () => { const b = parseInt(store.get("exmaBusBest") || "0", 10); return b ? `${b} / 51` : ""; } },
@@ -8295,7 +8451,7 @@ function renderSpielePage() {
   pageShell("spiele-page", "Spiele", `
     ${tn}
     ${GAME_TABS.map((g) => `<article class="tp-game">
-      <a class="tile-btn ${g.cls} tp-art" href="#${g.key}" aria-label="${g.name} spielen">${g.art()}<span class="mini-tag">Minispiel</span><span><b>${g.name}</b><small>${g.sub}</small></span></a>
+      <a class="tile-btn ${g.cls} tp-art" href="#${g.key}" aria-label="${g.name} spielen">${g.art()}<span class="tp-art-t"><b>${g.name}</b><small>${g.sub}</small></span></a>
       <div class="tp-lb">
         <div class="tp-rows" data-top="${g.key}"><h4>Bestenliste</h4><p class="tp-wait">Lädt …</p></div>
         <a class="tp-play" href="#${g.key}">Spielen</a>
@@ -8314,15 +8470,44 @@ function fillTops(tries) {
     } catch { el.innerHTML = `<h4>Bestenliste</h4><p class="tp-wait">Gerade nicht erreichbar</p>`; }
   });
 }
+/* Profilbild: eigenes Foto (verkleinert, nur auf dem Handy) oder ein Motiv aus der Auswahl */
+const AVA_PRESETS = [["🍺", "#ffd25a", "#e08a12"], ["🍹", "#ff5fa2", "#ff9a3d"], ["🥂", "#f6e39a", "#c9a24a"], ["🎧", "#2d6bff", "#7c3aed"], ["🕺", "#ff2e88", "#7c3aed"], ["💃", "#ff4d6d", "#b0127a"],
+  ["😎", "#2ff3e0", "#2d6bff"], ["🦄", "#f0abfc", "#7c3aed"], ["🐻", "#c98b2a", "#6b3a1e"], ["🔥", "#ffb347", "#ff2e88"], ["👑", "#ffd23f", "#ff8a3d"], ["🎲", "#5b8a3a", "#17885a"]];
+const avatarKey = () => store.get("exmaAvatar") || "";
+function avatarHTML() {
+  const a = avatarKey(), name = playerName();
+  if (a.startsWith("img:")) return `<img src="${a.slice(4)}" alt="">`;
+  if (a.startsWith("emo:")) { const p = AVA_PRESETS[+a.slice(4)] || AVA_PRESETS[0]; return `<i style="background:linear-gradient(135deg,${p[1]},${p[2]})">${p[0]}</i>`; }
+  return `<b>${esc((name || "?").trim().charAt(0).toUpperCase())}</b>`;
+}
+function avatarFromFile(file) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const S = 192, c = document.createElement("canvas"); c.width = c.height = S;
+      const k = Math.min(img.naturalWidth, img.naturalHeight), x = (img.naturalWidth - k) / 2, y = (img.naturalHeight - k) / 2;
+      c.getContext("2d").drawImage(img, x, y, k, k, 0, 0, S, S);
+      URL.revokeObjectURL(url); res(c.toDataURL("image/jpeg", .82));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error("Bild")); };
+    img.src = url;
+  });
+}
 function renderIchPage() {
   const name = playerName(), mat = store.get("exmaMatrikel"), got = Badges.count(), N = Badges.list().length;
   const recent = Badges.recent(9).filter((id) => BADGE_LIST.some((b) => b.id === id));
   const best = GAME_TABS.map((g) => `<a class="tp-best" href="#${g.key}"><span class="tp-best-i ${g.cls}" aria-hidden="true">${g.emo}</span><b>${g.name}</b><em>${g.mine() ? esc(g.mine()) : "–"}</em></a>`).join("");
   pageShell("ich-page", "Ich", `
     <div class="tp-prof">
-      <div class="tp-ava" aria-hidden="true">${esc((name || "?").trim().charAt(0).toUpperCase())}</div>
+      <button type="button" class="tp-ava" id="tpAva" aria-label="Profilbild ändern">${avatarHTML()}<span class="tp-ava-cam" aria-hidden="true">${ICON_CAM}</span></button>
       <div><b id="tpName">${name ? esc(name) : "Noch ohne Namen"}</b>
         <span class="tp-tags">${mat ? `<span>Matrikel ${esc(String(mat).replace(/^M/i, ""))}</span>` : `<a href="#ranking">Matrikel wählen</a>`}<button type="button" id="tpEdit">Name ändern</button></span></div>
+    </div>
+    <div class="tp-avapick" id="tpAvaPick" hidden>
+      <p>Profilbild wählen</p>
+      <div class="tp-avagrid">${AVA_PRESETS.map((p, k) => `<button type="button" data-ava="emo:${k}" style="background:linear-gradient(135deg,${p[1]},${p[2]})" aria-label="Motiv ${p[0]}">${p[0]}</button>`).join("")}</div>
+      <div class="tp-avaacts"><label class="tp-avafile">${ICON_CAM}Eigenes Foto<input type="file" accept="image/*" id="tpAvaFile"></label>${avatarKey() ? `<button type="button" data-ava="">Entfernen</button>` : ""}</div>
+      <small>Dein Bild bleibt nur auf diesem Handy und wird nirgends hochgeladen.</small>
     </div>
     <form class="tp-nameform" id="tpForm" hidden><input id="tpInput" maxlength="16" autocomplete="nickname" placeholder="z. B. Lena M25" value="${esc(name)}"><button type="submit">Speichern</button></form>
     <div class="tp-stats"><div><b>${Badges.visits()}</b><small>Clubabende</small></div><div><b>${got}</b><small>Abzeichen</small></div><div><b>${Badges.runs()}</b><small>Runden gezockt</small></div></div>
@@ -8336,6 +8521,13 @@ function renderIchPage() {
     <p class="tp-note">Name, Bestwerte und Abzeichen sind nur auf diesem Handy gespeichert.</p>`);
   document.querySelectorAll(".ich-page [data-b]").forEach((b) => b.addEventListener("click", () => Badges.card(b.dataset.b, false)));
   $("tpEdit").addEventListener("click", () => { const f = $("tpForm"); f.hidden = !f.hidden; if (!f.hidden) $("tpInput").focus(); });
+  $("tpAva").addEventListener("click", () => { const p = $("tpAvaPick"); p.hidden = !p.hidden; });
+  const setAva = (v) => { if (v) store.set("exmaAvatar", v); else { try { localStorage.removeItem("exmaAvatar"); } catch {} } renderIchPage(); tabSync(); };
+  document.querySelectorAll("#tpAvaPick [data-ava]").forEach((b) => b.addEventListener("click", () => setAva(b.dataset.ava)));
+  $("tpAvaFile").addEventListener("change", async (e) => {
+    const f = e.target.files && e.target.files[0]; if (!f) return;
+    try { setAva("img:" + await avatarFromFile(f)); } catch { alert("Das Bild konnte nicht geladen werden."); }
+  });
   $("tpForm").addEventListener("submit", (e) => { e.preventDefault(); const n = $("tpInput").value.trim().slice(0, 16); if (!n) return; setPlayerName(n); renderIchPage(); });
   Badges.art();
 }
